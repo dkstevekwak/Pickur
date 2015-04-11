@@ -17,9 +17,9 @@ app.config(function ($stateProvider) {
 	    }
 	});
 
-    $stateProvider.state('addpole', {
-        url: '/addpole',
-        templateUrl: '/templates/addpole.html',
+    $stateProvider.state('addpoll', {
+        url: '/addpoll',
+        templateUrl: '/templates/addpoll.html',
         controller: function($scope, $state){
 
         }
@@ -32,9 +32,9 @@ app.config(function ($stateProvider) {
         	
         }
     });
-    $stateProvider.state('pole', {
-        url: '/pole',
-        templateUrl: '/templates/pole.html',
+    $stateProvider.state('poll', {
+        url: '/poll',
+        templateUrl: '/templates/poll.html',
         controller: 'MainController'
         // abstract: true
         // onEnter: function($stateParams, $state) {
@@ -42,24 +42,24 @@ app.config(function ($stateProvider) {
         // }
     });
 
-    $stateProvider.state('pole.category', {
+    $stateProvider.state('poll.category', {
         url: '/category/:categoryName',
         templateUrl: '/templates/category.html',
         resolve: {
-        	category: function($stateParams, FlashCardsFactory){
+        	category: function($stateParams, NewPollFactory){
         		if($stateParams.categoryName === 'All') {
-        			return FlashCardsFactory.localFlashcards
+        			return NewPollFactory.localPoll
         		}
         		else {
-        			return FlashCardsFactory.localFlashcards.filter(function(flashcard){
-        				return flashcard.category === $stateParams.categoryName
+        			return NewPollFactory.localPoll.filter(function(pole){
+        				return pole.category === $stateParams.categoryName
         			})	
         		}
         		
         	}
         },
         controller: function($scope, $state, category){
-        	$scope.flashCards = category;
+        	$scope.polls = category;
         }
     });
 });

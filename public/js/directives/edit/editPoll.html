@@ -1,0 +1,34 @@
+<div ng-controller="NewPollController">
+ <form name="newPollForm" novalidate>
+        <error ng-show= "newPollForm.$submitted && newPollForm.questionField.$error.required"> Question is required</error> <br/>
+        <error ng-show= "newPollForm.$submitted && newPollForm.questionField.$error.minlength"> Your question is too short</error> <br/>
+        Question: <input type='text' name='questionField'placeholder='question' ng-model='newPoll.question' required ng-minlength='15'/> <br/>
+        <error ng-show= "newPollForm.$submitted && newPollForm.categoryField.$invalid"> Category is required</error> <br/>
+
+        
+        Category: <select name='categoryField' ng-model='newPoll.category' required> 
+                    <option> MongoDB</option>
+                    <option> Express</option>
+                    <option> Angular</option>
+                    <option> Node</option>
+                  </select>
+        <br/>
+
+        <input type="checkbox" name="correct" ng-click='optionClick(0);' value="correct" ng-model='newPoll.answers[0].correct'/>
+        <input type='text'  ng-model='newPoll.answers[0].text' ng-maxlength='40'/> 
+        <br/>
+
+        <input type="checkbox" name="correct" value="correct" ng-click='optionClick(1);' ng-model='newPoll.answers[1].correct'/>
+        <input type='text'  ng-model='newPoll.answers[1].text' ng-maxlength='40'/> 
+        <br/>
+
+        <input type="checkbox" name="correct" value="correct" ng-click='optionClick(2);' ng-model='newPoll.answers[2].correct'/>
+        <input type='text' ng-model='newPoll.answers[2].text' ng-maxlength='40'/> 
+        <br/>
+
+        <button type='submit' ng-click="newPollForm.$valid && updateCard()" ng-if='isEditing'>edit</button>
+        <button type='submit' ng-click="newPollForm.$valid && sendNewPoll(newPoll)" ng-if='!isEditing'>submit</button>
+        <!-- sendMeCard() used to be in button but now moved up to 'form' -->
+        
+    </form>
+</div>

@@ -1,13 +1,13 @@
 
-app.factory('PoleFactory', function ($http) {
+app.factory('PollFactory', function ($http) {
     return {
-        localPole: [],
-        getPole: function (category) {
+        localPoll: [],
+        getPoll: function (category) {
         	var queryParams = {};
             var that = this;
         	if(category) {queryParams.category = category}
-            return $http.get('/pole', {params: queryParams}).then(function (response) {
-                that.localPole = response.data
+            return $http.get('/poll', {params: queryParams}).then(function (response) {
+                that.localPoll = response.data
                 
             })
         }

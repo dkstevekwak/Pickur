@@ -3,8 +3,8 @@
 <span class="glyphicon glyphicon-ok-circle" aria-hidden="false"></span>
 </section>
 <section id='main'>
-    <h3>{{card.category}}</h3>
-    <h1>{{card.question}}</h1>
+    <h3>{{poll.category}}</h3>
+    <h1>{{poll.question}}</h1>
 	<div id="options">
     <ul class="optionContainer">
         <li class="option">A</h3>
@@ -15,8 +15,8 @@
     </ul>
 	</div>
     <ul class="flash-card-answers">
-        <li class="flash-card-answer repeated-item" border-on-hover ng-repeat="answer in card.answers | orderBy:'text'" ng-click="answerQuestion(answer)">
-            {{answer.text}}
+        <li class="flash-card-answer repeated-item" border-on-hover ng-repeat="answer in poll.answers | orderBy:'text'" ng-click="answerQuestion(answer)">
+            {{poll.text}}
             
         </li>
     </ul>

@@ -1,7 +1,7 @@
-app.directive('flashCard', function(ScoreFactory){
+app.directive('poll', function(ScoreFactory){
 	return {
 		restrict: 'E',
-		templateUrl: 'js/directives/flashCard/flashCard.html',
+		templateUrl: 'js/directives/poll/poll.html',
 		scope: {
 			card : '='
 		},

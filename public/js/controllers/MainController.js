@@ -1,4 +1,4 @@
-app.controller('MainController', function($scope,$state, FlashCardsFactory){
+app.controller('MainController', function($scope,$state, PollFactory){
 	$scope.categories = [
     'All',
     'MongoDB',
@@ -13,33 +13,27 @@ app.controller('MainController', function($scope,$state, FlashCardsFactory){
 
 	$scope.getCategoryCards = function(category){
 		if(category === 'All'){ 
-		$scope.flashCards = [];
-		FlashCardsFactory.getFlashCards().then(function (receivedCards){
-		$scope.flashCards = FlashCardsFactory.localFlashcards;
+		$scope.poll = [];
+		PollFactory.getPoll().then(function (receivedPoll){
+		$scope.poll = PollFactory.localPoll;
 	
 	})
 	}
-		$scope.flashCards = [];
+		$scope.poll = [];
 		$scope.categorySelected = category;
-		FlashCardsFactory.getFlashCards(category).then(function (receivedCards){
-		$scope.flashCards = FlashCardsFactory.localFlashcards;
+		PollFactory.getPoll(category).then(function (receivedPoll){
+		$scope.poll = PollFactory.localPoll;
 	})
 
 	}
 
-	FlashCardsFactory.getFlashCards().then(function (receivedCards){
-		$scope.flashCards = FlashCardsFactory.localFlashcards;
+	PollFactory.getPoll().then(function (receivedPoll){
+		$scope.poll = PollFactory.localPoll;
 		
-	}).then (function(doneCards){
-		$state.go('flashcard.category', {categoryName: 'All'});
+	}).then (function(donePoll){
+		$state.go('poll.category', {categoryName: 'All'});
 	})
 
-
-	// $scope.switchToCategoryPage = function(category){
-	// 	console.log(category)
-	// 	$state.go('flashcard.category', {categoryName: category});
-	// };
-	        
 
 
 
