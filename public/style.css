@@ -1,0 +1,171 @@
+.nav {
+  cursor: pointer; }
+
+* {
+  box-sizing: border-box; }
+
+edit {
+  text-align: center; }
+  edit select {
+    width: 300px; }
+  edit input[type='text'] {
+    width: 300px; }
+
+#wrapper {
+  background: url('images/golden-retriever-puppy-wide.jpg') no-repeat center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 900px; }
+  #wrapper h1 {
+    color: white;
+    padding-left: 47%;
+    padding-top: 8%; }
+
+.menu {
+  float: left;
+  margin-right: 20px;
+  font-size: 2em; }
+
+#loader img {
+  margin: 0 auto;
+  display: block; }
+
+#scoreboard {
+  text-align: center;
+  margin: 20px; }
+
+.stat-controller {
+  display: inline; }
+  .stat-controller button {
+    background-color: none;
+    font-size: 1.5em; }
+
+.category-button-container {
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid darkgray;
+  font-size: 1.5em; }
+
+.category-button {
+  border: none;
+  background: none;
+  padding: 20px;
+  margin-right: 15px;
+  cursor: pointer;
+  outline: none; }
+  .category-button.active {
+    background: gainsboro; }
+
+ul {
+  list-style-type: none; }
+
+#mainLeft {
+  float: left;
+  width: 10%;
+  margin-left: 14%; }
+  #mainLeft span {
+    top: 186px;
+    color: skyblue; }
+
+#mainRight {
+  float: right;
+  width: 10%;
+  margin-right: 10%; }
+  #mainRight span {
+    top: -235px;
+    color: #F02020; }
+
+.glyphicon {
+  font-size: 5em; }
+
+#main {
+  display: block;
+  width: 737px;
+  margin: 0 auto;
+  margin-top: 30px;
+  font-family: 'PT Sans', sans-serif; }
+  #main h1 {
+    font-size: 28px;
+    text-align: center;
+    line-height: 40px;
+    padding: 10px 0;
+    background-color: #CFCFCF;
+    color: black;
+    margin: 0; }
+  #main h3 {
+    margin: 0;
+    padding: 5px 30px 0 0;
+    background-color: #CFCFCF;
+    color: brown;
+    text-align: right;
+    font-size: 1.5em;
+    font-style: italic; }
+  #main .optionContainer {
+    padding: 0;
+    margin: 0; }
+  #main #options {
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+    line-height: 50px; }
+    #main #options .option {
+      background-color: #AEAEAE;
+      float: left;
+      width: 33.33333%;
+      color: white;
+      font-size: 1.3em; }
+    #main #options .circle {
+      text-transform: uppercase;
+      font-size: 0.95em;
+      line-height: 53px;
+      display: table-cell;
+      text-align: center;
+      width: 55px;
+      height: 51px;
+      border-radius: 60px;
+      border: 1px solid #80C2AE;
+      background-color: #fff;
+      color: #565656;
+      position: absolute; }
+    #main #options .circle.first {
+      margin-left: 219px; }
+    #main #options .circle.second {
+      margin-left: 464px; }
+  #main .flash-card-answers {
+    width: 100%;
+    margin: 0 auto;
+    clear: both;
+    padding: 0; }
+    #main .flash-card-answers:before, #main .flash-card-answers:after {
+      content: " ";
+      /* 1 */
+      display: table;
+      /* 2 */ }
+    #main .flash-card-answers:after {
+      clear: both; }
+  #main .flash-card-answer {
+    min-height: 100px;
+    font-size: 1.3em;
+    text-align: center;
+    border: 1px solid lightgray;
+    padding: 30px 20px;
+    float: left;
+    width: 33.33333%;
+    height: 220px;
+    cursor: pointer;
+    line-height: 1.5em; }
+    #main .flash-card-answer:last-child {
+      margin-right: 0; }
+
+.answer-feedback {
+  text-align: center;
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 1.2em;
+  height: 30px; }
+  .answer-feedback.correct {
+    color: green; }
+  .answer-feedback.incorrect {
+    color: red; }

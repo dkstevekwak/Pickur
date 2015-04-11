@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box; }
+
+.category-button {
+  border: 1px solid black;
+  background: none;
+  padding: 20px;
+  margin-right: 15px;
+  cursor: pointer;
+  outline: none; }
+  .category-button.active {
+    background: gainsboro; }
+
+.flash-card {
+  width: 740px;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 30px;
+  border: 1px solid gray;
+  font-family: 'Lato', sans-serif; }
+  .flash-card h1 {
+    font-size: 35px;
+    text-align: center;
+    line-height: 55px;
+    padding: 20px 0;
+    background-color: #438FA1;
+    color: white; }
+  .flash-card #options {
+    text-align: center;
+    font-size: 22px;
+    line-height: 50px; }
+    .flash-card #options .option {
+      background-color: #87E7EB;
+      float: left;
+      width: 33.33333%;
+      color: #565656;
+      font-size: 1.3em; }
+    .flash-card #options .circle {
+      text-transform: uppercase;
+      font-size: 0.95em;
+      line-height: 53px;
+      display: table-cell;
+      text-align: center;
+      width: 55px;
+      height: 51px;
+      border-radius: 60px;
+      border: 1px solid #80C2AE;
+      background-color: #fff;
+      color: #565656;
+      position: absolute; }
+    .flash-card #options .circle.first {
+      margin-left: 219px; }
+    .flash-card #options .circle.second {
+      margin-left: 464px; }
+  .flash-card .flash-card-answers {
+    width: 100%;
+    margin: 0 auto;
+    clear: both; }
+    .flash-card .flash-card-answers:before, .flash-card .flash-card-answers:after {
+      content: " ";
+      /* 1 */
+      display: table;
+      /* 2 */ }
+    .flash-card .flash-card-answers:after {
+      clear: both; }
+  .flash-card .flash-card-answer {
+    min-height: 100px;
+    font-size: 1.2em;
+    text-align: center;
+    border: 1px solid lightgray;
+    padding: 30px 20px;
+    float: left;
+    width: 33.33333%;
+    height: 220px;
+    cursor: pointer;
+    line-height: 1.5em; }
+    .flash-card .flash-card-answer:last-child {
+      margin-right: 0; }
+
+.answer-feedback {
+  text-align: center;
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 1.2em; }
+  .answer-feedback.correct {
+    color: green; }
+  .answer-feedback.incorrect {
+    color: red; }

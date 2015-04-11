@@ -1,0 +1,12 @@
+<div>
+    <div class='category-button-container'>
+        <button class="category-button" ng-repeat="category in categories" ui-sref="flashcard.category({categoryName: category})" ng-class='{active: category===categorySelected}'>{{category}}
+        </button>
+    </div>
+    
+ 	<ui-view></ui-view>   
+    
+
+
+    
+</div>

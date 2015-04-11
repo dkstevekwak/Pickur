@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flash Cards</title>
+        <!-- We've provided some styles for you, aren't we nice? -->
+        <base href="/" />
+        <link rel="stylesheet" type="text/css" href="css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="css/animate.css" />
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans|Open+Sans' rel='stylesheet' type='text/css'>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers/MainController.js"></script>
+        <script src="js/factories/ScoreFactory.js"></script>
+        <script src="js/directives/loader/loader.js"></script>
+        <script src="js/directives/flashCard/flashCard.js"></script>
+        <script src="js/directives/borderOnHover.js"></script>
+        <script src="js/controllers/NewCardController.js"></script>
+        <script src="js/factories/NewCardFactory.js"></script>
+        <script src="js/directives/errorDirective.js"></script>
+        <script src="js/factories/populateCards.js"></script>
+        <script src="js/directives/edit/editCard.js"></script>
+
+    </head>
+
+    <body ng-app="FlashCardApp">
+        
+       <div class='nav'>
+            <ul>
+                <li ui-sref='home' class='menu'>Home</li>
+                <li ui-sref="flashcard" class='menu'>Flashcard</li>
+                <li ui-sref="addcard" class='menu'>Addcard</li>
+                <li ui-sref="scoreboard" class='menu'>Scoreboard</li>
+            </ul>
+
+       </div>
+        <ui-view>
+            
+        </ui-view>
+    </body>
+</html>

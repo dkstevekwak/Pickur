@@ -1,0 +1,35 @@
+
+<section id='mainLeft' ng-show="answeredCorrectly">
+<span class="glyphicon glyphicon-ok-circle" aria-hidden="false"></span>
+</section>
+<section id='main'>
+    <h3>{{card.category}}</h3>
+    <h1>{{card.question}}</h1>
+	<div id="options">
+    <ul class="optionContainer">
+        <li class="option">A</h3>
+        <li class="circle first">OR</h3>
+        <li class="option">B</h3>
+        <li class="circle second">OR</h3>
+        <li class="option">C</h3>
+    </ul>
+	</div>
+    <ul class="flash-card-answers">
+        <li class="flash-card-answer repeated-item" border-on-hover ng-repeat="answer in card.answers | orderBy:'text'" ng-click="answerQuestion(answer)">
+            {{answer.text}}
+            
+        </li>
+    </ul>
+    <h2 class="answer-feedback" ng-show="answered" ng-class='{correct: answeredCorrectly, incorrect: !answeredCorrectly}'>
+        <span ng-show="answeredCorrectly && !alreadyAnswered">Yeah, you got it right!</span>
+        <span ng-show="!answeredCorrectly && !alreadyAnswered">Nope, you got it wrong.</span>
+        <span ng-show="alreadyAnswered">You already answered!</span>
+    </h2>
+<button ng-click='editListner()'>edit</button>
+ </section>
+ <section id='mainRight' ng-show="answeredCorrectly===false && answered">
+<span class="glyphicon glyphicon-remove-circle" aria-hidden="false"></span>
+</section>
+<edit ng-show='isEditing'></edit>
+
+
