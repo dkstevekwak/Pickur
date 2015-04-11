@@ -57,14 +57,14 @@ app.get('/poll', function (req, res) {
 });
 
 app.post('/poll', function(req,res,next){
-  var newPole = new PollModel();
+  var newPoll = new PollModel();
   var body= req.body;
 
-  newPole.question = body.question;
-  newPole.category = body.category;
-  newPole.answers = body.answers;
+  newPoll.question = body.question;
+  newPoll.category = body.category;
+  newPoll.answers = body.answers;
 
-  PollModel.create(newPole, function(err,savedPoll){
+  PollModel.create(newPoll, function(err,savedPoll){
     if(err) return next(err); 
     res.json(savedPoll);
   });

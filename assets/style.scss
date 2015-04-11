@@ -40,6 +40,9 @@ edit {
   float:left;
   margin-right: 20px;
   font-size: 2em;
+  &:first-child {
+      margin-left: 30px;
+    }
 }
 
 
@@ -148,7 +151,7 @@ ul {
     .option{
       background-color:#AEAEAE;
       float:left;
-      width:33.33333%;
+      width:50%;
       color:white;
       font-size:1.3em;
       
@@ -170,11 +173,8 @@ ul {
       position: absolute;
     }
     .circle.first{
-      margin-left: 219px;
+      margin-left: 341px;
 
-    }
-    .circle.second{
-      margin-left: 464px;
     }
   }
   .flash-card-answers {
@@ -192,7 +192,7 @@ ul {
     border: 1px solid lightgray;
     padding: 30px 20px;
     float: left;
-    width: 33.33333%;
+    width: 50%;
     height: 220px;
     cursor: pointer;
     line-height: 1.5em;

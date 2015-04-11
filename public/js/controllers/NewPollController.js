@@ -9,11 +9,10 @@ app.controller('NewPollController', function($scope, $http, PollFactory){
 	    'Node'
 	    
 	];
-	$scope.poll = {
+	$scope.newPoll = {
 	    question: null,
 	    category: null,
 	    answers: [
-	        { text: null, correct: false },
 	        { text: null, correct: false },
 	        { text: null, correct: false }
 	    ]
@@ -21,18 +20,17 @@ app.controller('NewPollController', function($scope, $http, PollFactory){
 
 	$scope.sendNewPoll = function (){
 			return $http.post('/poll', {
-				question: $scope.poll.question,
-				category: $scope.poll.category,
-				answers: $scope.poll.answers
+				question: $scope.newPoll.question,
+				category: $scope.newPoll.category,
+				answers: $scope.newPoll.answers
 			}).then(function(response){
 				PollFactory.localPoll.push(response.data);
 				return response.data;
 			}).then(function(response){
 				// $scope.newCardForm.categoryField.$setPristine();		
-				$scope.poll.question = null;
-				$scope.poll.category = null;
-				$scope.poll.answers = [
-		        { text: null, correct: false },
+				$scope.newPoll.question = null;
+				$scope.newPoll.category = null;
+				$scope.newPoll.answers = [
 		        { text: null, correct: false },
 		        { text: null, correct: false }
 		    	]
@@ -42,11 +40,10 @@ app.controller('NewPollController', function($scope, $http, PollFactory){
 		}
 
 	$scope.updatePoll = function(){
-		var card = $scope.card;
-		return $http.put('/poll/' + $scope.card._id,{
-			question: $scope.poll.question,
-			category: $scope.poll.category,
-			answers: $scope.poll.answers
+		return $http.put('/poll/' + $scope.poll._id,{
+			question: $scope.newPoll.question,
+			category: $scope.newPoll.category,
+			answers: $scope.newPoll.answers
 		})
 		.then(function(response){
 			PollFactory.localPoll.push(response.data);
@@ -56,7 +53,6 @@ app.controller('NewPollController', function($scope, $http, PollFactory){
 				$scope.poll.question = null;
 				$scope.poll.category = null;
 				$scope.poll.answers = [
-		        { text: null, correct: false },
 		        { text: null, correct: false },
 		        { text: null, correct: false }
 		    	]

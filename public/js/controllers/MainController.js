@@ -1,15 +1,13 @@
 app.controller('MainController', function($scope,$state, PollFactory){
 	$scope.categories = [
     'All',
-    'MongoDB',
-    'Express',
-    'Angular',
-    'Node'
+    'Fashion',
+    'Food',
+    'Sports',
+    'Entertainment'
 ];
-	$scope.consoles = function(category){
-		console.log(category);
-	}
 	$scope.categorySelected;
+	$scope.poll;
 
 	$scope.getCategoryCards = function(category){
 		if(category === 'All'){ 
@@ -28,6 +26,7 @@ app.controller('MainController', function($scope,$state, PollFactory){
 	}
 
 	PollFactory.getPoll().then(function (receivedPoll){
+		console.log(PollFactory.localPoll)
 		$scope.poll = PollFactory.localPoll;
 		
 	}).then (function(donePoll){

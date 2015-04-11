@@ -1,5 +1,5 @@
 <div ng-controller="NewPollController">
- <form name="newPollForm" novalidate>
+ <form name=" commentForm" novalidate>
         <error ng-show= "newPollForm.questionField.$touched && newPollForm.questionField.$error.required"> Question is required</error> <br/>
         <error ng-show= "newPollForm.questionField.$touched && newPollForm.questionField.$error.minlength"> Your question is too short</error> <br/>
         Question: <input type='text' name='questionField'placeholder='question' ng-model='newPoll.question' required ng-minlength='15'/> <br/>

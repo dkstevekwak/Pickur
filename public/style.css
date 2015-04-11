@@ -27,6 +27,8 @@ edit {
   float: left;
   margin-right: 20px;
   font-size: 2em; }
+  .menu:first-child {
+    margin-left: 30px; }
 
 #loader img {
   margin: 0 auto;
@@ -113,7 +115,7 @@ ul {
     #main #options .option {
       background-color: #AEAEAE;
       float: left;
-      width: 33.33333%;
+      width: 50%;
       color: white;
       font-size: 1.3em; }
     #main #options .circle {
@@ -130,9 +132,7 @@ ul {
       color: #565656;
       position: absolute; }
     #main #options .circle.first {
-      margin-left: 219px; }
-    #main #options .circle.second {
-      margin-left: 464px; }
+      margin-left: 341px; }
   #main .flash-card-answers {
     width: 100%;
     margin: 0 auto;
@@ -152,7 +152,7 @@ ul {
     border: 1px solid lightgray;
     padding: 30px 20px;
     float: left;
-    width: 33.33333%;
+    width: 50%;
     height: 220px;
     cursor: pointer;
     line-height: 1.5em; }

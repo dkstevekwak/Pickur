@@ -1,5 +1,5 @@
 
-    <flash-card card="flashCard" class="flash-card" ng-repeat="flashCard in flashCards | orderBy:'question'">
+    <poll poll="eachPoll" class="flash-card" ng-repeat="eachPoll in poll | orderBy:'question'">
 
-    </flash-card>
-    <loader id="loader" ng-hide="flashCards.length"></loader>
+    </poll>
+    <loader id="loader" ng-hide="poll.length"></loader>

@@ -46,20 +46,20 @@ app.config(function ($stateProvider) {
         url: '/category/:categoryName',
         templateUrl: '/templates/category.html',
         resolve: {
-        	category: function($stateParams, NewPollFactory){
+        	category: function($stateParams, PollFactory){
         		if($stateParams.categoryName === 'All') {
-        			return NewPollFactory.localPoll
+        			return PollFactory.localPoll
         		}
         		else {
-        			return NewPollFactory.localPoll.filter(function(pole){
-        				return pole.category === $stateParams.categoryName
+        			return PollFactory.localPoll.filter(function(poll){
+        				return poll.category === $stateParams.categoryName
         			})	
         		}
         		
         	}
         },
         controller: function($scope, $state, category){
-        	$scope.polls = category;
+        	$scope.poll = category;
         }
     });
 });
