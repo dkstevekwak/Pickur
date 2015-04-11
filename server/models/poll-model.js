@@ -8,4 +8,4 @@ var schema = new mongoose.Schema({
     ]
 });
 
-module.exports = mongoose.model('Poles', schema);
+module.exports = mongoose.model('Poll', schema);

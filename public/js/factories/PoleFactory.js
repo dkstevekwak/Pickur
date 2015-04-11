@@ -1,13 +1,13 @@
 
-app.factory('FlashCardsFactory', function ($http) {
+app.factory('PoleFactory', function ($http) {
     return {
-        localFlashcards: [],
-        getFlashCards: function (category) {
+        localPole: [],
+        getPole: function (category) {
         	var queryParams = {};
             var that = this;
         	if(category) {queryParams.category = category}
-            return $http.get('/cards', {params: queryParams}).then(function (response) {
-                that.localFlashcards = response.data
+            return $http.get('/pole', {params: queryParams}).then(function (response) {
+                that.localPole = response.data
                 
             })
         }

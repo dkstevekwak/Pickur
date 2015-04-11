@@ -1,6 +1,6 @@
 var path = require('path');
 var express = require('express');
-var PolesModel = require('./models/poles-model');
+var PollModel = require('./models/poll-model');
 var nodeSass   = require('node-sass-middleware');
 var bodyParser = require('body-parser');
 
@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // If we're hitting our home page, serve up our index.html file!
 
 
-app.get('/poles', function (req, res) {
+app.get('/poll', function (req, res) {
 
     var modelParams = {};
 
@@ -48,7 +48,7 @@ app.get('/poles', function (req, res) {
     	modelParams.category = req.query.category;
     }
 
-     PolesModel.find(modelParams, function (err, poles) {
+     PollModel.find(modelParams, function (err, poles) {
         setTimeout(function () {
             res.send(poles);
         }, Math.random() * 1000);
@@ -56,20 +56,20 @@ app.get('/poles', function (req, res) {
 
 });
 
-app.post('/poles', function(req,res,next){
-  var newPole = new PolesModel();
+app.post('/poll', function(req,res,next){
+  var newPole = new PollModel();
   var body= req.body;
 
   newPole.question = body.question;
   newPole.category = body.category;
   newPole.answers = body.answers;
 
-  PolesModel.create(newPole, function(err,savedPoll){
+  PollModel.create(newPole, function(err,savedPoll){
     if(err) return next(err); 
     res.json(savedPoll);
   });
 
-  // PolesModel.create(body, function(err,card){
+  // PollModel.create(body, function(err,card){
   //   if(err) return next(err); 
   //   res.json({
   //     question:card.question,
@@ -80,16 +80,16 @@ app.post('/poles', function(req,res,next){
 
 })
 
-app.put('/poles/:polesId', function(req,res,next){
-  var polesId = req.params.polesId;
+app.put('/poll/:pollId', function(req,res,next){
+  var pollId = req.params.pollId;
   var body = req.body;
 
-  PolesModel.findById(polesId, function(err,pole){
-    pole.question=body.question;
-    pole.category=body.category;
-    pole.answers=body.answers;
-    pole.save(function(err){
-      res.json(pole);
+  PollModel.findById(pollId, function(err,poll){
+    poll.question=body.question;
+    poll.category=body.category;
+    poll.answers=body.answers;
+    poll.save(function(err){
+      res.json(poll);
       });
   });
 });    

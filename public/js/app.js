@@ -1,5 +1,5 @@
 
-var app = angular.module('FlashCardApp',['ngAnimate','ui.router']);
+var app = angular.module('pollApp',['ngAnimate','ui.router']);
 
 app.config(function ($locationProvider, $urlRouterProvider){
 	$locationProvider.html5Mode(true);
@@ -17,9 +17,9 @@ app.config(function ($stateProvider) {
 	    }
 	});
 
-    $stateProvider.state('addcard', {
-        url: '/addcard',
-        templateUrl: '/templates/addcard.html',
+    $stateProvider.state('addpole', {
+        url: '/addpole',
+        templateUrl: '/templates/addpole.html',
         controller: function($scope, $state){
 
         }
@@ -32,9 +32,9 @@ app.config(function ($stateProvider) {
         	
         }
     });
-    $stateProvider.state('flashcard', {
-        url: '/flashcard',
-        templateUrl: '/templates/flashcard.html',
+    $stateProvider.state('pole', {
+        url: '/pole',
+        templateUrl: '/templates/pole.html',
         controller: 'MainController'
         // abstract: true
         // onEnter: function($stateParams, $state) {
@@ -42,7 +42,7 @@ app.config(function ($stateProvider) {
         // }
     });
 
-    $stateProvider.state('flashcard.category', {
+    $stateProvider.state('pole.category', {
         url: '/category/:categoryName',
         templateUrl: '/templates/category.html',
         resolve: {
