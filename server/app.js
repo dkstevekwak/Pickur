@@ -16,9 +16,9 @@ var bowerPath = path.join(__dirname, '../bower_components');
 var indexHtmlPath = path.join(__dirname, '../index.html');
 
 var sassMiddleware = nodeSass({
-  src: sourcePath,
-  dest: destPath,
-  debug: true
+ src: sourcePath,
+ dest: destPath,
+ debug: true
 });
 app.use(sassMiddleware);
 // The path of our index.html file. ([ROOT]/index.html)
@@ -40,61 +40,76 @@ app.use(bodyParser.urlencoded({extended: true}));
 // If we're hitting our home page, serve up our index.html file!
 
 
-app.get('/poll', function (req, res) {
+app.get('/poll', function (req, res) {  //requests polls
 
-    var modelParams = {};
+   var modelParams = {};
 
-    if (req.query.category) {
-    	modelParams.category = req.query.category;
-    }
+   if (req.query.category) {
+       modelParams.category = req.query.category;
+   }
 
-     PollModel.find(modelParams, function (err, poles) {
-        setTimeout(function () {
-            res.send(poles);
-        }, Math.random() * 1000);
-    });
+    PollModel.find(modelParams, function (err, poles) {
+       setTimeout(function () {
+           res.send(poles);
+       }, Math.random() * 1000);
+   });
 
 });
 
+
+
 app.post('/poll', function(req,res,next){
-  var newPoll = new PollModel();
-  var body= req.body;
+ var newPoll = new PollModel();
 
-  newPoll.question = body.question;
-  newPoll.category = body.category;
-  newPoll.answers = body.answers;
+ var body= req.body;
 
-  PollModel.create(newPoll, function(err,savedPoll){
-    if(err) return next(err); 
-    res.json(savedPoll);
-  });
+ newPoll.question = body.question;
+ newPoll.category = body.category;
+ newPoll.answers = body.answers;
 
-  // PollModel.create(body, function(err,card){
-  //   if(err) return next(err); 
-  //   res.json({
-  //     question:card.question,
-  //     category:card.category,
-  //     answers:card.answers
-  //   });    
-  // })
+ PollModel.create(newPoll, function(err,savedPoll){
+   if(err) return next(err); 
+   res.json(savedPoll);
+ });
+
+ // PollModel.create(body, function(err,card){
+ //   if(err) return next(err); 
+ //   res.json({
+ //     question:card.question,
+ //     category:card.category,
+ //     answers:card.answers
+ //   });    
+ // })
 
 })
 
-app.put('/poll/:pollId', function(req,res,next){
-  var pollId = req.params.pollId;
-  var body = req.body;
+app.post('/pollsubmit/:pollId', function(req, res, next){ //route for updating poll submissions
+   var pollId = req.params.pollId;
+   var body = req.body;
 
-  PollModel.findById(pollId, function(err,poll){
-    poll.question=body.question;
-    poll.category=body.category;
-    poll.answers=body.answers;
-    poll.save(function(err){
-      res.json(poll);
-      });
-  });
+   PollModel.findById(pollId, function(err,poll){
+       poll.responses.push(body.choice);
+       poll.save(function(err){
+           res.json(poll);
+       });
+   });
+
+})
+
+app.put('/poll/:pollId', function(req,res,next){ //update polls
+ var pollId = req.params.pollId;
+ var body = req.body;
+
+ PollModel.findById(pollId, function(err,poll){
+   poll.question=body.question;
+   poll.category=body.category;
+   poll.answers=body.answers;
+   poll.save(function(err){
+     res.json(poll);
+     });
+ });
 });    
 
 app.get('/*', function (req, res) {
-    res.sendFile(indexHtmlPath);
+   res.sendFile(indexHtmlPath);
 });
-

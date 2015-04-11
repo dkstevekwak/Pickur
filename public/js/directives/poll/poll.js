@@ -16,22 +16,21 @@ app.directive('poll', function(ScoreFactory){
 			scope.editListner = function(){
 				if(!scope.isEditing) scope.isEditing = true;
 				else scope.isEditing = false;
-			}
-				
-				scope.answerQuestion =function (choice){
-						scope.answered = true;
-						scope.showResult = true;
-						
+			}	
+			scope.answerQuestion =function (choice){
+					scope.answered = true;
+					scope.showResult = true;
+					
 
-					if(choice==='left'){  
-							scope.hideRight = true;
-							scope.leftClickCount++;
+				if(choice==='left'){  
+						scope.hideRight = true;
+						scope.leftClickCount++;
 
-					}
-					else if(choice==='right'){
-							scope.hideLeft = true;
-							scope.rightClickCount++
-					}
+				}
+				else if(choice==='right'){
+						scope.hideLeft = true;
+						scope.rightClickCount++
+				}
 					
 						
 
