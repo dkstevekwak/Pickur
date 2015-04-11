@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/flash-cards');
+mongoose.connect('mongodb://localhost/poles');
 
 // Grabbing our server from our server/index.js file.
 var server = require('./server');

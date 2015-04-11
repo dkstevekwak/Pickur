@@ -1,6 +1,6 @@
 var path = require('path');
 var express = require('express');
-var FlashCardModel = require('./models/flash-card-model');
+var PolesModel = require('./models/poles-model');
 var nodeSass   = require('node-sass-middleware');
 var bodyParser = require('body-parser');
 
@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // If we're hitting our home page, serve up our index.html file!
 
 
-app.get('/cards', function (req, res) {
+app.get('/poles', function (req, res) {
 
     var modelParams = {};
 
@@ -48,29 +48,28 @@ app.get('/cards', function (req, res) {
     	modelParams.category = req.query.category;
     }
 
-     FlashCardModel.find(modelParams, function (err, cards) {
+     PolesModel.find(modelParams, function (err, poles) {
         setTimeout(function () {
-            res.send(cards);
+            res.send(poles);
         }, Math.random() * 1000);
     });
 
 });
 
-app.post('/cards', function(req,res,next){
-  var newCard = new FlashCardModel();
+app.post('/poles', function(req,res,next){
+  var newPole = new PolesModel();
   var body= req.body;
 
-  newCard.question = body.question;
-  newCard.category = body.category;
-  newCard.answers = body.answers;
+  newPole.question = body.question;
+  newPole.category = body.category;
+  newPole.answers = body.answers;
 
-  console.log(newCard);
-  FlashCardModel.create(newCard, function(err,savedCard){
+  PolesModel.create(newPole, function(err,savedPoll){
     if(err) return next(err); 
-    res.json(savedCard);
+    res.json(savedPoll);
   });
 
-  // FlashCardModel.create(body, function(err,card){
+  // PolesModel.create(body, function(err,card){
   //   if(err) return next(err); 
   //   res.json({
   //     question:card.question,
@@ -81,17 +80,16 @@ app.post('/cards', function(req,res,next){
 
 })
 
-app.put('/cards/:flashCardId', function(req,res,next){
-  var flashCardId = req.params.flashCardId;
+app.put('/poles/:polesId', function(req,res,next){
+  var polesId = req.params.polesId;
   var body = req.body;
 
-  FlashCardModel.findById(flashCardId, function(err,card){
-    card.question=body.question;
-    card.category=body.category;
-    card.answers=body.answers;
-    console.log(card);
-    card.save(function(err){
-      res.json(card);
+  PolesModel.findById(polesId, function(err,pole){
+    pole.question=body.question;
+    pole.category=body.category;
+    pole.answers=body.answers;
+    pole.save(function(err){
+      res.json(pole);
       });
   });
 });    

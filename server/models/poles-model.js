@@ -8,4 +8,4 @@ var schema = new mongoose.Schema({
     ]
 });
 
-module.exports = mongoose.model('FlashCard', schema);
+module.exports = mongoose.model('Poles', schema);
