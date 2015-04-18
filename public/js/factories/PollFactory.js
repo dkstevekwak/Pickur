@@ -1,5 +1,5 @@
 
-app.factory('PollFactory', function ($http) {
+app.factory('PollFactory', function ($http, $sce) {
     return {
         localPoll: [],
         getPoll: function (category) {
@@ -7,11 +7,28 @@ app.factory('PollFactory', function ($http) {
             var that = this;
         	if(category) {queryParams.category = category}
             return $http.get('/poll', {params: queryParams}).then(function (response) {
+
                 that.localPoll = response.data
                 
-            })
+            });
+        },
+        getImage: function(searchWord) {
+            return $http.get('/getimage', {params:{searchWord:searchWord}}).then(function(response){
+                return response.data.responseData.results;       
+            });
+        },
+        getVideo: function(searchWord) {
+            return $http.get('/getvideo', {params:{searchWord:searchWord}}).then(function(response){
+                return response.data;  
+            });
+        },
+        updatePoll: function(poll){
+            return $http.put('/poll/'+poll._id, poll).then(function(response){
+                console.log( response.data[0].body);
+            });
+            
         }
-    };
+    }
 });
 
 app.factory('ScoreFactory', function(){
@@ -23,3 +40,11 @@ app.factory('ScoreFactory', function(){
 
 
 });
+
+app.factory('LogFactory', function(){
+    return {
+        loggedIn: null
+    }
+})
+
+

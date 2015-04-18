@@ -1,31 +1,98 @@
-<div ng-controller="NewPollController">
- <form name="newPollForm" novalidate>
-        <error ng-show= "newPollForm.questionField.$touched && newPollForm.questionField.$error.required"> Question is required</error> <br/>
-        <error ng-show= "newPollForm.questionField.$touched && newPollForm.questionField.$error.minlength"> Your question is too short</error> <br/>
-        Question: <input type='text' name='questionField'placeholder='question' ng-model='newPoll.question' required ng-minlength='15'/> <br/>
-        <error ng-show= "newPollForm.categoryField.$touched && newPollForm.categoryField.$error.required"> Category is required</error> <br/>
+<div ng-controller="NewPollController" class="contentPage">
+    <div class="col-lg-4">
+     <form name="newPollForm" class="addForm form-group" ng-submit="newPollForm.$valid && sendNewPoll()" novalidate>
+            <error ng-show= "newPollForm.$submitted && newPollForm.questionField.$error.required"> Question is required</error> <br/>
+            <error ng-show= "newPollForm.$submitted && newPollForm.questionField.$error.minlength"> Your question is too short</error> <br/>
+            <error ng-show= "newPollForm.$submitted && newPollForm.categoryField.$error.required"> Category is required</error> <br/>
+            <input type='text' class="form-control" name='questionField'placeholder='question' ng-model='newPoll.question' required/> <br/>
+            <!-- <error ng-show= "newPollForm.categoryField.$touched && newPollForm.categoryField.$error.required"> Category is required</error> <br/> -->
 
+            
+            <select name='categoryField' class="form-control" placeholder="Category" ng-model='newPoll.category' required> 
+                        <option value="" disabled selected style="display: none;">Select your option</option>
+                        <option value="All">All</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Food">Food</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Entertainment">Entertainment</option>
+                      </select>
+            <input type='text' placeholder="image source" ng-model='newPoll.answers[0].image'/ ng-hide="true" required>
+            
+            <input type='text' name="option" placeholder='option 1' class="form-control" ng-model='newPoll.answers[0].text' ng-maxlength='40' required/>
+            <!-- <button class="clearBtn" ng-click="newPoll.answers[0].image=null">clear image1</button> -->
+            <!-- <span>Please choose a picture from Google Image below</span> -->
+            <br/> 
+            
+
+            <input type='text' placeholder="image source" ng-model='newPoll.answers[1].image' ng-hide="true" required>
+            <input type='text'  name="option" placeholder='option 2' class="form-control" ng-model='newPoll.answers[1].text' ng-maxlength='40' required/> 
+            <!-- <button class="clearBtn" ng-click="newPoll.answers[1].image=null">clear image2</button> -->
+            
+            <br/>
+
+           <!--  <button type='submit' ng-click="newPollForm.$valid && updatePoll()" ng-if='isEditing'>edit</button> -->
+            <button type='submit' class="btn btn-default menu-animation" ng-if='!isEditing' is-active ng-class="{'highlight':active}" ng-mouseenter="active=true" ng-mouseleave="active=false">submit</button>
+            <!-- sendMeCard() used to be in button but now moved up to 'form' -->
+        </form>
+    </div>
+    <div class="flash-card main col-sm-6 col-lg-8 col-md-4">
+        <div class="exampleCard">
+               <h3>example: {{newPoll.category}}</h3>
+               <h1>example: {{newPoll.question}}</h1>
+            <div id="options" class="toggle">
+                   <!-- ng-if="!showResult" -->
+               <ul class="optionContainer">
+                   <li class="option">A: {{newPoll.answers[0].text}}</h3>
+                   <li class="circle first">OR</h3>
+                   <li class="option">B: {{newPoll.answers[1].text}}</h3>
+               </ul>
+            </div>
+               <ul class="flash-card-answers">
+                   <div class="cardWrapper answer-animation" ng-class="{'answer':showResultLeft}"> 
+                       <div class='card'>
+                           <li class="flash-card-answer front" border-on-hover ng-click="answerQuestion('left',poll)" ng-show="!showResultLeft">
+                               <img ng-if="!isVideo1" src="{{newPoll.answers[0].image}}">
+                               <iframe ng-if="isVideo1" width="100%" height="100%" ng-src="{{videofy(newPoll.answers[0].image)}}" frameborder="0" allowfullscreen></iframe>
+                               <button type="button" ng-click="clear1()">Clear me</button>
+                           </li>
+                            
+                           
+                       </div>
+                   </div>
+                   <div class="cardWrapper answer-animation" ng-class="{'answer':showResultRight}" ng-click="newPoll.answers[1].image=null"> 
+                       <div class='card'>
+                           <li class="flash-card-answer front" border-on-hover ng-click="answerQuestion('right',poll)" ng-show="!showResultRight">
+                               <img ng-if="!isVideo2" src="{{newPoll.answers[1].image}}">
+                               <iframe ng-if="isVideo2" width="100%" height="100%" ng-src="{{videofy(newPoll.answers[1].image)}}" frameborder="0" allowfullscreen></iframe>
+                               <button type="button" ng-click="clear2()">Clear me</button>
+                           </li>
+                            
+                       </div>
+                   </div>
+               </ul>
+           </div>
+           
         
-        Category: <select name='categoryField' ng-model='newPoll.category' required> 
-                    <option> All</option>
-                    <option> Fashion</option>
-                    <option> Food</option>
-                    <option> Sports</option>
-                    <option> Entertainment</option>
-                  </select>
-        <br/>
-
-       
-        <input type='text'  ng-model='newPoll.answers[0].text' ng-maxlength='40'/> 
-        <br/>
-
-       
-        <input type='text'  ng-model='newPoll.answers[1].text' ng-maxlength='40'/> 
-        <br/>
-
-        <button type='submit' ng-click="newPollForm.$valid && updatePoll()" ng-if='isEditing'>edit</button>
-        <button type='submit' ng-click="newPollForm.$valid && sendNewPoll()" ng-if='!isEditing'>submit</button>
-        <!-- sendMeCard() used to be in button but now moved up to 'form' -->
-        
+    </div>
+    <form name="googleForm">
+        <div class="googleSearch">
+            <input type='text' class="form-control"  ng-model='searchQuery' placeholder='Search Images/Videos on Google/Youtube' />
+            <button class="btn btn-default" ng-click="getGoogleImage(searchQuery)">Get Images</button>
+            <button class="btn btn-default" ng-click="getYoutubeVideo(searchQuery)">Get Videos</button>
+            <ul ng-if="searchingImage" class='col-lg-12 searchImageWrapper'>
+                <li ng-repeat='image in searchedImages'>
+                    <div class='searchImageSubWrapper col-lg-3 col-md-4 col-sm-6' border-on-hover ng-click="getImageUrl(image)">
+                        <img src="{{image}}">
+                    </div>
+            </ul>
+            <ul ng-if="!searchingImage" class='col-lg-12 searchImageWrapper'>
+                <li ng-repeat='video in searchedVideos'>
+                    <div class='searchImageSubWrapper col-lg-3 col-md-4 col-sm-6' border-on-hover>
+                        <iframe width="100%" height="90%" ng-src="{{videofy(video)}}" frameborder="0" allowfullscreen></iframe>
+                        <button type="button" ng-click="getVideoUrl(video)">Add Me</button>
+                    </div>
+            </ul>
+        </div>
     </form>
-</div>
+   
+            

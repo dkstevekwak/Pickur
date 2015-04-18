@@ -4,13 +4,16 @@
         <title>Pickur</title>
         <!-- We've provided some styles for you, aren't we nice? -->
         <base href="/" />
+
         <link rel="stylesheet" type="text/css" href="css/reset.css" />
         <link rel="stylesheet" type="text/css" href="style.css" />
         <link rel="stylesheet" type="text/css" href="css/animate.css" />
+        <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=PT+Sans|Open+Sans' rel='stylesheet' type='text/css'>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
         <script src="/bower_components/jquery/dist/jquery.js"></script>
         <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+        
         <script src="/bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -21,25 +24,61 @@
         <script src="js/directives/poll/poll.js"></script>
         <script src="js/directives/borderOnHover.js"></script>
         <script src="js/controllers/NewPollController.js"></script>
+        <script src="js/controllers/CommentController.js"></script>
+        <script src="js/animation/animation.js"></script>
+        <script src="js/controllers/SignUpController.js"></script>
+        <script src="js/controllers/SignInController.js"></script>
+        <script src="js/controllers/ProfileController.js"></script>
         <script src="js/factories/NewPollFactory.js"></script>
         <script src="js/directives/errorDirective.js"></script>
         <script src="js/directives/edit/editPoll.js"></script>
+        <script src="js/directives/comment/commentPoll.js"></script>
+        
+       
 
     </head>
 
-    <body ng-app="pollApp">
-        
-       <div class='nav'>
+    <body ng-app="pollApp">  
+       <div class='navbar navbar-fixed-top' ng-controller="SignInController">
+
             <ul>
                 <li ui-sref='home' class='menu'>Home</li>
                 <li ui-sref="poll" class='menu'>Polls</li>
                 <li ui-sref="addpoll" class='menu'>AddPoll</li>
-                <li ui-sref="scoreboard" class='menu'>Scoreboard</li>
+                <li ui-sref="profile" class='menu'>ProfilePage</li>
             </ul>
+            <form name="SignUpForm" ng-if='!loggedIn'ng-submit='sendUser(user)'class='login toggle'novalidate>
+                
+                    email: <input type='email' ng-model='user.email'>
+                    Password: <input type='password' ng-model='user.password'>
+                    <button>log in</button> 
+                    <div class='fb-login-button' scope="public_profile,email" onlogin="checkLoginState();" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true"></div>
+                    <br/>
+                    <div class="keepLoggedIn">
+                        <input type="checkbox"/>
+                        <span>Keep me logged in</span>
+                    </div>
+                    <div class="forgotPassword">
+                    <h5><a>Forgot Password?</a></h5>
+                    </div>
+                    <div id="status">
+                    </div>
+                    
+                
+            </form>
+            <button ng-show='loggedIn' ng-click='logOut(user)'>log Out</button> 
+                
 
        </div>
+
+
+
+
+
         <ui-view>
             
         </ui-view>
+
+
     </body>
 </html>

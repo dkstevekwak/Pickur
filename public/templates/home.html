@@ -1,3 +1,49 @@
 <div id='wrapper'>
-    <h1>LOVE Pickur</h1>
+	<div id='homeElement'>
+		<section class='col-lg-4 col-md-6 col-sm-12'>
+			<div class="mainSignUp" ng-controller="SignUpController">
+			 
+			 <form name="SignUpForm" class="form-group" ng-hide="loggedIn"  novalidate>
+				 <h1>Sign Up</h1>
+			        <!-- <error ng-show= "SignUpForm.questionField.$touched && SignUpForm.questionField.$error.required"> Question is required</error> <br/>
+			        <error ng-show= "SignUpForm.questionField.$touched && SignUpForm.questionField.$error.minlength"> Your question is too short</error> <br/>
+			        
+			        <error ng-show= "SignUpForm.categoryField.$touched && SignUpForm.categoryField.$error.required"> Category is required</error> <br/> -->
+
+	                <input type="radio"  class="" name="gender" ng-click="genderClick('male')" value="male"> Male
+	        	    <input type="radio" class="" name="gender" ng-click="genderClick('female')" value="female"> Female
+			        <input type='text' class="form-control" name="firstName" ng-model="newUser.firstname" placeholder='First name'>
+			        <input type='text' class="form-control" name="lastName" ng-model="newUser.lastname" placeholder='Last name'>
+				    <input type="email" class="form-control" name="email" ng-model="newUser.email" placeholder="E-Mail">
+				    <input type="password" class="form-control" name="password" ng-model="newUser.password" placeholder="Type Password">
+			        <input type="date" class="form-control" name="bday" ng-model="newUser.bday"><br/>
+			        <button type='submit' is-active ng-class="{'highlight':active}" ng-mouseenter="active=true" ng-mouseleave="active=false" class="form-control menu-animation" ng-click="SignUpForm.$valid && sendNewUser(newUser)">Sign Up</button><br/>
+			        <!-- <button type='submit'>Sign Up with Facebook</button> -->
+			        <p><a href="/auth/facebook">Login through Facebook</a></p>
+			        <!-- <button is-active ng-click="active =! active">Toggle</button>
+			        <div ng-if='active' class="toggle">toggling</div> -->
+			   		<!-- <div
+			   		  class="fb-like"
+			   		  data-share="true"
+			   		  data-width="450"
+			   		  data-show-faces="true">
+			   		</div> -->
+			   		
+			        
+			    </form>
+			</div>
+		</section>	
+		<section class='col-lg-4 col-md-3 col-sm-0' >
+
+		</section>
+		<section class='col-lg-4 col-md-3 col-sm-0'>
+		    
+
+		    
+		</section>
+    </div>
+      <footer>
+      <!-- <p>&copy; 2014 Steve Kwak, Alex Wang.</p> -->
+    </footer>
+
 </div>

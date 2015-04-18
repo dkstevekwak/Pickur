@@ -1,11 +1,17 @@
-<div>
+<div class="contentPage">
     <div class='category-button-container'>
-        <button class="category-button" ng-repeat="category in categories" ui-sref="poll.category({categoryName: category})" ng-class='{active: category===categorySelected}'>{{category}}
+        <button class="category-button" ng-repeat="category in categories" ui-sref="poll.category({categoryName: category})" ng-class="{'active': category==categorySelected}" ng-click="selectCategory(category)">{{category}}
         </button>
     </div>
-    
- 	<ui-view></ui-view>   
-    
+    <div class="mainLeft col-sm-2 col-lg-3 col-md-3">
+    	<button ng-click='getTwitter()'>Get Twitter</button>
+
+    	<h1> {{twitter}} </h1>
+    </div>
+ 	<ui-view class='main col-sm-8 col-lg-6 col-md-6'></ui-view>   
+    <div class='mainRight col-sm-2 col-lg-3 col-md-3'>
+    	
+    </div>
 
 
     

@@ -1,4 +1,4 @@
-app.controller('MainController', function($scope,$state, PollFactory){
+app.controller('MainController', function($sce, $scope,$state, PollFactory){
 	$scope.categories = [
     'All',
     'Fashion',
@@ -8,8 +8,20 @@ app.controller('MainController', function($scope,$state, PollFactory){
 ];
 	$scope.categorySelected;
 	$scope.poll;
-
+	$scope.twitter;
+	$scope.isVideo = false;
+	
+	$scope.selectCategory = function(category){
+		
+		$scope.categorySelected = category;
+	}
+	$scope.getTwitter = function(){
+		PollFactory.getTrend().then(function(receivedTrend){
+			$scope.twitter=receivedTrend
+		})
+	}
 	$scope.getCategoryCards = function(category){
+		$scope.categorySelected = category;
 		if(category === 'All'){ 
 		$scope.poll = [];
 		PollFactory.getPoll().then(function (receivedPoll){
@@ -18,21 +30,24 @@ app.controller('MainController', function($scope,$state, PollFactory){
 	})
 	}
 		$scope.poll = [];
-		$scope.categorySelected = category;
 		PollFactory.getPoll(category).then(function (receivedPoll){
 		$scope.poll = PollFactory.localPoll;
+
+
 	})
 
 	}
 
 	PollFactory.getPoll().then(function (receivedPoll){
-		console.log(PollFactory.localPoll)
 		$scope.poll = PollFactory.localPoll;
+		$scope.poll.forEach(function(each){
+		})
 		
 	}).then (function(donePoll){
 		$state.go('poll.category', {categoryName: 'All'});
 	})
 
+	
 
 
 
@@ -42,9 +57,7 @@ app.controller('MainController', function($scope,$state, PollFactory){
 
 });
 
-app.controller('StatsController', function($scope, ScoreFactory){
-	$scope.scores = ScoreFactory;
-});
+
 
 
 

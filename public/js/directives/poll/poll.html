@@ -1,38 +1,49 @@
 
-<section id='mainLeft' ng-show="answeredCorrectly">
-<span class="glyphicon glyphicon-ok-circle" aria-hidden="false"></span>
-</section>
-<section id='main'>
+
+
     <h3>{{poll.category}}</h3>
     <h1>{{poll.question}}</h1>
-	<div id="options" ng-hide="showResult">
+	<div id="options" class="toggle">
+        <!-- ng-if="!showResult" -->
     <ul class="optionContainer">
-        <li class="option">A</h3>
+        <li class="option">{{poll.answers[0].text}}</h3>
         <li class="circle first">OR</h3>
-        <li class="option">B</h3>
+        <li class="option">{{poll.answers[1].text}}</h3>
     </ul>
 	</div>
     <ul class="flash-card-answers">
-        <li class="flash-card-answer" border-on-hover ng-click="answerQuestion('left')" ng-hide="hideLeft">
-            {{poll.answers[0].text}}
-        </li>
-        <li class="flash-card-answer" border-on-hover ng-click="answerQuestion('right')" ng-hide="hideRight">
-            {{poll.answers[1].text}}
-        </li>
-        <li class="flash-card-answer" ng-show="hideRight">
-            {{leftClickCount}}
-        </li>
-         <li class="flash-card-answer" ng-show="hideLeft">
-            {{rightClickCount}}
-        </li>
+        <div class="cardWrapper answer-animation" ng-class="{'answer':showResultLeft}"> 
+            <div class='card'>
+                <li class="flash-card-answer front" border-on-hover ng-click="answerQuestion('left',poll)" ng-show="!showResultLeft">
+                    <img ng-if="!checkVideo(poll.answers[0].image)" src="{{poll.answers[0].image}}">
+                    <iframe ng-if="checkVideo(poll.answers[0].image)" width="100%" height="100%" ng-src="{{videofy(poll.answers[0].image)}}" frameborder="0" allowfullscreen>
+                    </iframe>
+                </li>
+                 <li class="flash-card-answer back" ng-show="showResultLeft">
+                    Vote: {{poll.answers[0].count}}
+                </li>
+            </div>
+        </div>
+        <div class="cardWrapper answer-animation" ng-class="{'answer':showResultRight}"> 
+            <div class='card'>
+                <li class="flash-card-answer front" border-on-hover ng-click="answerQuestion('right',poll)" ng-show="!showResultRight">
+                    <img ng-if="!checkVideo(poll.answers[1].image)" src="{{poll.answers[1].image}}">
+                    <iframe ng-if="checkVideo(poll.answers[1].image)" width="100%" height="100%" ng-src="{{videofy(poll.answers[1].image)}}" frameborder="0" allowfullscreen>
+                    </iframe>
+                </li>
+                 <li class="flash-card-answer back" ng-show="showResultRight">
+                    Vote: {{poll.answers[1].count}}
+                </li>
+            </div>
+        </div>
     </ul>
-<button ng-hide='hideRight||hideLeft' ng-click='editListner()'>edit</button>
-<button ng-show='hideRight||hideLeft'>Comment</button>
- </section>
- <section id='mainRight' ng-show="answeredCorrectly===false && answered">
-<span class="glyphicon glyphicon-remove-circle" aria-hidden="false"></span>
-</section>
-<edit ng-show='isEditing'></edit>
+<!-- <button ng-hide='hideRight||hideLeft' ng-click='editListner()'>edit</button> -->
+<button ng-show='hideRight||hideLeft' ng-click='commentListner()'>Comment</button>
+<comment class='toggle' ng-if='isCommenting'></comment>
+<edit ng-if='isEditing'></edit>
+
+
+
 
 
 

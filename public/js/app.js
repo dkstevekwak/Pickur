@@ -3,7 +3,7 @@ var app = angular.module('pollApp',['ngAnimate','ui.router']);
 
 app.config(function ($locationProvider, $urlRouterProvider){
 	$locationProvider.html5Mode(true);
-	// $urlRouterProvider.otherwise('/');
+	$urlRouterProvider.otherwise('/');
 })
 
 
@@ -25,9 +25,9 @@ app.config(function ($stateProvider) {
         }
     });
 
-    $stateProvider.state('scoreboard', {
-        url: '/scoreboard',
-        templateUrl: '/templates/stats.html',
+    $stateProvider.state('profile', {
+        url: '/profile',
+        templateUrl: '/templates/profile.html',
         controller: function($scope, $state){
         	
         }
@@ -51,6 +51,7 @@ app.config(function ($stateProvider) {
         			return PollFactory.localPoll
         		}
         		else {
+                    console.log(PollFactory.localPoll)
         			return PollFactory.localPoll.filter(function(poll){
         				return poll.category === $stateParams.categoryName
         			})	
