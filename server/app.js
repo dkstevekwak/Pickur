@@ -271,10 +271,14 @@ app.put('/poll/:pollId', function(req,res,next){ //update polls
  PollModel.Poll.findById(pollId, function(err,poll){
   if(!req.session._id) res.sendStatus(401);
   else{
+    console.log(body)
    poll.question=body.question;
    poll.category=body.category;
    poll.answers=body.answers;
+   poll.responses.push(body.answer);
    poll.save(function(err){
+     console.log("left", poll.results.left);
+     console.log("right", poll.results.right);
      res.json(poll);
 
      });

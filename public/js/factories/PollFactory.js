@@ -24,6 +24,8 @@ app.factory('PollFactory', function ($http, $sce) {
         },
         updatePoll: function(poll){
             return $http.put('/poll/'+poll._id, poll).then(function(response){
+                console.log("here");
+                console.log(response);
                 console.log( response.data[0].body);
             });
             

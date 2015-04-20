@@ -6,9 +6,25 @@ var pollSchema = new mongoose.Schema({
    answers: [
        { text: String, correct: Boolean, image: String, count: Number }
    ],
-   responses: [Number]
+   responses: [String]
 });
 
+pollSchema.virtual('results').get(function(){
+	var leftCount = this.responses.filter(function(cell){
+		return cell == 'left';
+	}).length;
+	var rightCount = this.responses.filter(function(cell){
+		return cell == 'right';
+	}).length;
+	var responseCount = this.responses.length;
+
+	var data = {
+		'left' : leftCount,
+		'right' : rightCount,
+		'total': responseCount
+	};
+	return data;
+});
 
 var userSchema = new mongoose.Schema({
 	password: {type: String, required: true},

@@ -17,7 +17,6 @@ app.directive('poll', function($sce, ScoreFactory,PollFactory,LogFactory){
 			scope.isEditing = false;
 			scope.isCommenting = false;
 			scope.isHidden = true;
-
 			scope.checkVideo = function(option){
 
 				return !!option.match(/youtube/);
@@ -46,7 +45,7 @@ app.directive('poll', function($sce, ScoreFactory,PollFactory,LogFactory){
 				if(choice==='left'){  
 						scope.hideLeft = true;
 						scope.showResultLeft = true;
-
+						poll.answer = choice;
 						if(!poll.answers[0].count) poll.answers[0].count=1;
 						else poll.answers[0].count++;
 						PollFactory.updatePoll(poll).then(function(updatedPoll){
@@ -58,6 +57,7 @@ app.directive('poll', function($sce, ScoreFactory,PollFactory,LogFactory){
 				else if(choice==='right'){
 						scope.hideLeft = true;
 						scope.showResultRight = true;
+						poll.answer = choice;
 						poll.answers[1].count++;
 						PollFactory.updatePoll(poll).then(function(updatedPoll){
 							
