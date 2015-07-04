@@ -11,10 +11,11 @@ app.controller('SignUpController', function($location,$scope, $state, $http, Log
 
 	$scope.sendNewUser = function (newUser){
 			return $http.post('/newUser', newUser).then(function(response){
-				if(response.status===200) {
+					LogFactory.loggedIn = true;
+					LogFactory.user = response.data;
 					$state.go('poll.category')
 					// $location.url('/categry/all')
-				}
+				return response;
 			}).then(function(response){
 				// $scope.newCardForm.categoryField.$setPristine();		
 				$scope.newUser = {

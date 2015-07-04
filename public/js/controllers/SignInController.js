@@ -20,9 +20,11 @@
  			if(response.status===200) {
  				$state.go('poll.category', {categoryName: 'All'})
  			}
+			return response;
  		}).then(function(response){
  			$scope.loggedIn = true;
  			LogFactory.loggedIn = true;
+			LogFactory.user = response.data;
  			$scope.user = new User;
  		}).catch(function(response){
  			console.log('user not found')
@@ -32,6 +34,7 @@
  	$scope.logOut = function(user){
  		$scope.loggedIn = false;
  		LogFactory.loggedIn = false;
+		LogFactory.user = null;
  		
  		return $http.get('/logout', user).then(function(response){
  			if(response.status===200){

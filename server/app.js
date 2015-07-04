@@ -171,7 +171,7 @@ app.post('/poll', function(req,res,next){
  PollModel.User.create(newUser, function(err,savedUser){
    if(err) return next(err); 
    req.session._id = savedUser._id;
-   res.sendStatus(200);
+   res.send(savedUser);
  });
 });
 
@@ -182,7 +182,7 @@ app.post('/poll', function(req,res,next){
     else if(!foundUser) res.sendStatus(401);
     else {
       req.session._id=foundUser._id;
-      res.sendStatus(200);
+      res.send(foundUser);
     }
 
    })
@@ -268,15 +268,18 @@ app.put('/poll/:pollId', function(req,res,next){ //update polls
  var pollId = req.params.pollId;
  var body = req.body;
 
- PollModel.Poll.findById(pollId, function(err,poll){
+ PollModel.Poll.findById(pollId).populate('responseA, responseB').exec(function(err,poll){
   if(!req.session._id) res.sendStatus(401);
   else{
    poll.question=body.question;
    poll.category=body.category;
    poll.answers=body.answers;
-   poll.save(function(err){
-     res.json(poll);
-
+   poll.responseA = body.responseA;
+   poll.responseB = body.responseB;
+   poll.save(function(err,saved){
+       PollModel.Poll.findById(saved._id).populate('responseA responseB').exec(function(err, savedpoll){
+           res.json(savedpoll);
+       })
      });
    }
  });

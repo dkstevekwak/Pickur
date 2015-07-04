@@ -24,7 +24,7 @@ app.factory('PollFactory', function ($http, $sce) {
         },
         updatePoll: function(poll){
             return $http.put('/poll/'+poll._id, poll).then(function(response){
-                console.log( response.data[0].body);
+                console.log( response.data);
             });
             
         }
@@ -43,7 +43,8 @@ app.factory('ScoreFactory', function(){
 
 app.factory('LogFactory', function(){
     return {
-        loggedIn: null
+        loggedIn: null,
+        user: null
     }
 })
 

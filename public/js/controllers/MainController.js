@@ -1,10 +1,10 @@
 app.controller('MainController', function($sce, $scope,$state, PollFactory){
 	$scope.categories = [
     'All',
-    'Fashion',
-    'Food',
-    'Sports',
-    'Entertainment'
+    'fashion',
+    'food',
+    'sports',
+    'entertainment'
 ];
 	$scope.categorySelected;
 	$scope.poll;
