@@ -49,19 +49,18 @@ mongoose.connect('mongodb://localhost/pickur');
 
 var wipeDB = function () {
 
-    var models = [Poll];
-
+    var models = [User, Poll];
     models.forEach(function (model) {
         model.find({}).remove(function () {});
     });
 
     return bluebird.resolve();
-
 };
 
 var seedPoll = function (num, userArr) {
     polls[0].creator = userArr[0];
     polls[1].creator = userArr[1];
+
     var generatePolls = function(num, userArr){
       for (var i = 0; i < num; i++){
         polls.push({
@@ -89,6 +88,7 @@ var seedPoll = function (num, userArr) {
         })
       })
     }
+
     generatePolls(num, userArr);
     addPollData(userArr);
 
@@ -131,6 +131,7 @@ var killDb = function(){
   console.log('database seeded')
   process.kill(0);
 }
+
 mongoose.connection.once('open', function () {
     wipeDB().then(function(){
       return seedUsers(100)
@@ -139,5 +140,4 @@ mongoose.connection.once('open', function () {
     }).then(killDb).catch(function(err){
       console.log(err);
     });
-    //seed();
 });
