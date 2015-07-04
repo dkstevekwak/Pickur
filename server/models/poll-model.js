@@ -4,7 +4,7 @@ var pollSchema = new mongoose.Schema({
    question: String,
    category: String,
    answers: [
-       { text: String, correct: Boolean, image: String, count: Number }
+       { text: String, image: String, count: Number }
    ],
    responses: [Number]
 });
