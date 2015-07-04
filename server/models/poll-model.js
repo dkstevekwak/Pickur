@@ -7,10 +7,10 @@ var pollSchema = new mongoose.Schema({
        { text: String, image: String, count: Number }
    ],
    responseA: [
-		 { user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'} }
+		 {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 	 ],
 	 responseB: [
-		 { user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'} }
+		 {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 	 ],
 	 creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 });
@@ -22,7 +22,7 @@ var userSchema = new mongoose.Schema({
 	lastname: String,
 	gender: String,
 	email: {type: String, required: true},
-	bday: String,
+	bday: Date,
 	facebook: {
 		id: String,
 		token: String,
