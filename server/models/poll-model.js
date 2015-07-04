@@ -22,7 +22,7 @@ var userSchema = new mongoose.Schema({
 	lastname: String,
 	gender: String,
 	email: {type: String, required: true},
-	bday: String,
+	bday: Date,
 	facebook: {
 		id: String,
 		token: String,
