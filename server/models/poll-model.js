@@ -6,7 +6,13 @@ var pollSchema = new mongoose.Schema({
    answers: [
        { text: String, image: String, count: Number }
    ],
-   responses: [Number]
+   responseA: [
+		 { user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'} }
+	 ],
+	 responseB: [
+		 { user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'} }
+	 ],
+	 creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 });
 
 
